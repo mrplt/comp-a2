@@ -391,7 +391,9 @@ public class MyBigInteger  implements Comparable<MyBigInteger> {   //  We will c
 	public MyBigInteger dividedBy( MyBigInteger  divisor ) throws Exception{
 		
 		//   ADD YOUR CODE BELOW HERE
-	        int quotient;
+	        MyBigInteger quotient = 0;
+	        quotient.base = this.base;
+	        
 	        if (this.base != divisor.base) {
 	          throw new Exception("Bases must be the same");
 	        }
@@ -402,10 +404,27 @@ public class MyBigInteger  implements Comparable<MyBigInteger> {   //  We will c
 			  quotient = 0;
 			}
 			else if (divisor.minus(dividend) = 0) {
-			  quotient = 1;
+			  quotient.coefficients(0) = 1;
 			}
 			else { 
-			  for (i
+				MyBigInteger intermediary;
+				intermediary.base = this.base;
+				int rank = 0;
+				int quotBase = 0;
+			  for (int k = dividendSize-divisorSize;k<=dividendSize-1;k++) {
+				  intermediary.coefficients(rank) =  this.coefficients(k);
+				  rank++;
+			  }
+			  if(intermediary.minus(divisor)>0) {
+				  while (intermediary.minus(divisor) > divisor) {
+					  intermediary = intermediary.minus(divisor);
+					  quotient.coefficients(quotBase)++;
+					  if (quotient.coefficients(quotBase) > this.base) {
+						  quotient.coefficients(quotBase) -= base;
+					  }
+					  
+				  }
+			  }
 			 
 			}
 			}
